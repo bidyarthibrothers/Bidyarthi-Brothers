@@ -1,0 +1,1344 @@
+```html
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BIDYARTHI BROTHERS — Thoughtful Writing &amp; Modern Ideas</title>
+    <meta name="description" content="BIDYARTHI BROTHERS — A minimalist digital publication featuring thoughtful essays, tech insights, design stories, and modern culture. Read, write, and explore ideas without distractions.">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&amp;family=Inter:wght@300;400;500;600;700&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,700;1,6..72,400&amp;display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        warm: {
+                            50: '#fcfbf9',
+                            100: '#faf9f5',
+                            200: '#f3efe6',
+                            300: '#e7dfd1',
+                            800: '#2c2825',
+                            900: '#1c1917',
+                        },
+                        terracotta: {
+                            DEFAULT: '#c85a32',
+                            hover: '#b04b26',
+                            light: '#fdf2ee',
+                            dark: '#923a1a'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Newsreader', 'Georgia', 'serif'],
+                        mono: ['Fira Code', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d1d5db;
+            border-radius: 9999px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #374151;
+        }
+        @keyframes float-up {
+            0% { opacity: 1; transform: translateY(0) scale(1); }
+            100% { opacity: 0; transform: translateY(-40px) scale(1.2); }
+        }
+        .animate-float {
+            animation: float-up 0.8s ease-out forwards;
+        }
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .line-clamp-3 {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .article-body h2 {
+            font-size: 1.65rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+        .article-body h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .article-body blockquote {
+            border-left: 4px solid #c85a32;
+            padding-left: 1.25rem;
+            margin: 1.5rem 0;
+            font-style: italic;
+            opacity: 0.9;
+        }
+        .article-body ul {
+            list-style-type: disc;
+            padding-left: 1.5rem;
+            margin: 1rem 0;
+        }
+        .article-body pre {
+            background-color: #18181b;
+            color: #f4f4f5;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.875rem;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            position: relative;
+        }
+        .article-body code {
+            font-family: 'Fira Code', monospace;
+        }
+        .article-body img {
+            border-radius: 0.75rem;
+            margin: 1.5rem auto;
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body class="bg-warm-100 text-stone-900 dark:bg-stone-950 dark:text-stone-100 font-sans transition-colors duration-200 min-h-screen flex flex-col">
+
+    <!-- Top Reading Progress Bar -->
+    <div id="readingProgressContainer" class="fixed top-0 left-0 w-full h-1 bg-stone-200 dark:bg-stone-800 z-50 opacity-0 transition-opacity duration-300">
+        <div id="readingProgressBar" class="h-full bg-terracotta w-0 transition-all duration-150"></div>
+    </div>
+
+    <!-- MAIN HEADER -->
+    <header class="sticky top-0 z-40 bg-warm-100/90 dark:bg-stone-950/90 backdrop-blur-md border-b border-stone-200/80 dark:border-stone-800 transition-colors duration-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 sm:h-20">
+                
+                <!-- Logo -->
+                <div class="flex items-center gap-6">
+                    <a href="#" onclick="showSection('home')" class="flex items-center gap-2.5 group">
+                        <div class="w-10 h-10 rounded-full bg-stone-900 text-warm-100 dark:bg-warm-100 dark:text-stone-900 flex items-center justify-center transition-transform group-hover:rotate-[-6deg]">
+                            <i data-lucide="feather" class="w-5 h-5"></i>
+                        </div>
+                        <span class="font-serif text-2xl font-bold tracking-tight text-stone-900 dark:text-stone-100 uppercase">BIDYARTHI BROTHERS<span class="text-terracotta">.</span></span>
+                    </a>
+                </div>
+
+                <!-- Navigation Links -->
+                <nav class="hidden md:flex items-center gap-8 font-medium text-sm text-stone-600 dark:text-stone-300">
+                    <a href="#" onclick="showSection('home')" class="hover:text-stone-900 dark:hover:text-white transition-colors">Home</a>
+                    <a href="#feedSection" onclick="filterType('post')" class="hover:text-stone-900 dark:hover:text-white transition-colors">Articles</a>
+                    <a href="#feedSection" onclick="filterType('page')" class="hover:text-stone-900 dark:hover:text-white transition-colors flex items-center gap-1.5">
+                        <span>Pages</span>
+                        <span id="pageBadgeCount" class="text-[10px] bg-terracotta text-white px-1.5 py-0.2 rounded-full font-bold">1</span>
+                    </a>
+                    <a href="#aboutSection" class="hover:text-stone-900 dark:hover:text-white transition-colors">About</a>
+                </nav>
+
+                <!-- Action Controls -->
+                <div class="flex items-center gap-3 sm:gap-4">
+                    <button onclick="toggleSearchModal(true)" title="Search (Cmd+K)" class="p-2 text-stone-600 dark:text-stone-300 hover:text-stone-900 dark:hover:text-white hover:bg-stone-200/50 dark:hover:bg-stone-800 rounded-full transition-colors">
+                        <i data-lucide="search" class="w-5 h-5"></i>
+                    </button>
+
+                    <button onclick="toggleTheme()" title="Toggle Dark/Light Mode" class="p-2 text-stone-600 dark:text-stone-300 hover:text-stone-900 dark:hover:text-white hover:bg-stone-200/50 dark:hover:bg-stone-800 rounded-full transition-colors">
+                        <i data-lucide="sun" class="w-5 h-5 hidden dark:block"></i>
+                        <i data-lucide="moon" class="w-5 h-5 block dark:hidden"></i>
+                    </button>
+
+                    <button onclick="toggleWriteModal(true)" class="hidden sm:flex items-center gap-2 bg-terracotta hover:bg-terracotta-hover text-white text-sm font-medium px-4 py-2 rounded-full transition-all shadow-sm hover:shadow">
+                        <i data-lucide="square-pen" class="w-4 h-4"></i>
+                        <span>Write</span>
+                    </button>
+
+                    <button onclick="toggleMobileMenu()" class="md:hidden p-2 text-stone-700 dark:text-stone-200 hover:bg-stone-200/50 dark:hover:bg-stone-800 rounded-lg">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer Menu -->
+        <div id="mobileMenu" class="hidden md:hidden border-b border-stone-200 dark:border-stone-800 bg-warm-50 dark:bg-stone-900 px-4 py-4 space-y-3">
+            <a href="#" onclick="showSection('home'); toggleMobileMenu()" class="block py-2 text-stone-700 dark:text-stone-200 font-medium">Home</a>
+            <a href="#feedSection" onclick="filterType('post'); toggleMobileMenu()" class="block py-2 text-stone-700 dark:text-stone-200 font-medium">Articles</a>
+            <a href="#feedSection" onclick="filterType('page'); toggleMobileMenu()" class="block py-2 text-stone-700 dark:text-stone-200 font-medium">Pages</a>
+            <a href="#aboutSection" onclick="toggleMobileMenu()" class="block py-2 text-stone-700 dark:text-stone-200 font-medium">About</a>
+            <button onclick="toggleWriteModal(true); toggleMobileMenu()" class="w-full flex items-center justify-center gap-2 bg-terracotta text-white py-2.5 rounded-full font-medium">
+                <i data-lucide="square-pen" class="w-4 h-4"></i>
+                <span>Create New Post / Page</span>
+            </button>
+        </div>
+    </header>
+
+    <main class="flex-1">
+
+        <!-- HERO SECTION: FEATURED STORY -->
+        <section id="heroFeatured" class="border-b border-stone-200/80 dark:border-stone-800/80 py-10 sm:py-16 bg-warm-50 dark:bg-stone-900/40">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div id="heroContent" class="grid lg:grid-cols-12 gap-8 items-center">
+                    <!-- Dynamic Featured Post Inserted Here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- TOPICS &amp; CONTENT TYPE FILTER BAR -->
+        <section id="topicsSection" class="border-b border-stone-200 dark:border-stone-800 bg-warm-100 dark:bg-stone-950 py-4 sticky top-16 sm:top-20 z-30 backdrop-blur-md">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between gap-4 overflow-x-auto no-scrollbar py-1">
+                    
+                    <div class="flex items-center gap-4">
+                        <!-- Content Type Toggle (Articles vs Pages) -->
+                        <div class="flex items-center bg-stone-200/80 dark:bg-stone-800 p-1 rounded-full text-xs font-semibold">
+                            <button onclick="filterType('post')" id="btnTypePost" class="px-3 py-1.5 rounded-full bg-stone-900 text-white dark:bg-stone-100 dark:text-stone-900 shadow-sm transition-all">
+                                Posts
+                            </button>
+                            <button onclick="filterType('page')" id="btnTypePage" class="px-3 py-1.5 rounded-full text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-all">
+                                Pages
+                            </button>
+                        </div>
+
+                        <div class="h-4 w-px bg-stone-300 dark:bg-stone-800"></div>
+
+                        <!-- Category Pills -->
+                        <div id="categoryPills" class="flex items-center gap-2 flex-nowrap">
+                            <!-- Dynamic Category Pills -->
+                        </div>
+                    </div>
+
+                    <!-- Layout Switcher -->
+                    <div class="hidden sm:flex items-center bg-stone-200/60 dark:bg-stone-800 p-1 rounded-lg shrink-0">
+                        <button onclick="setViewMode('grid')" id="btnGridView" class="p-1.5 rounded-md text-stone-700 dark:text-stone-300 transition-colors" title="Grid View">
+                            <i data-lucide="grid" class="w-4 h-4"></i>
+                        </button>
+                        <button onclick="setViewMode('list')" id="btnListView" class="p-1.5 rounded-md text-stone-700 dark:text-stone-300 transition-colors" title="List View">
+                            <i data-lucide="list" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MAIN ARTICLE FEED &amp; SIDEBAR -->
+        <section id="feedSection" class="py-12 sm:py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                    
+                    <!-- MAIN CONTENT FEED -->
+                    <div class="lg:col-span-8">
+                        <div class="flex items-center justify-between mb-8">
+                            <h2 class="font-serif text-2xl font-bold tracking-tight" id="feedTitle">Latest Stories</h2>
+                            <span id="articleCount" class="text-xs font-semibold uppercase tracking-wider text-stone-500 bg-stone-200/60 dark:bg-stone-800 px-3 py-1 rounded-full">Showing 6</span>
+                        </div>
+
+                        <!-- Posts Container -->
+                        <div id="articlesFeed" class="grid gap-8">
+                            <!-- Articles render dynamically -->
+                        </div>
+                    </div>
+
+                    <!-- SIDEBAR -->
+                    <aside class="lg:col-span-4 space-y-10">
+
+                        <!-- Trending Stories Widget -->
+                        <div class="bg-warm-50 dark:bg-stone-900/60 p-6 rounded-2xl border border-stone-200/80 dark:border-stone-800">
+                            <div class="flex items-center gap-2 mb-6">
+                                <i data-lucide="trending-up" class="w-5 h-5 text-terracotta"></i>
+                                <h3 class="font-serif text-lg font-bold">Popular Content</h3>
+                            </div>
+                            <div id="trendingList" class="space-y-5">
+                                <!-- Dynamic Trending Stories -->
+                            </div>
+                        </div>
+
+                        <!-- Newsletter Card -->
+                        <div class="bg-stone-900 text-warm-100 dark:bg-stone-900 dark:border dark:border-stone-800 p-6 rounded-2xl relative overflow-hidden">
+                            <div class="relative z-10 space-y-4">
+                                <div class="w-10 h-10 rounded-full bg-stone-800 text-terracotta flex items-center justify-center">
+                                    <i data-lucide="mail" class="w-5 h-5"></i>
+                                </div>
+                                <h3 class="font-serif text-xl font-bold">Weekly Essays &amp; Code</h3>
+                                <p class="text-stone-300 text-sm leading-relaxed">
+                                    Get hand-crafted essays on software engineering, UI design, and creative writing directly from BIDYARTHI BROTHERS.
+                                </p>
+                                <form onsubmit="handleNewsletter(event)" class="space-y-3 pt-2">
+                                    <input type="email" required placeholder="Enter your email address..." class="w-full bg-stone-800 border border-stone-700 text-white placeholder-stone-400 px-4 py-2.5 rounded-lg text-sm focus:outline-none focus:border-terracotta">
+                                    <button type="submit" class="w-full bg-terracotta hover:bg-terracotta-hover text-white text-sm font-medium py-2.5 rounded-lg transition-colors shadow">
+                                        Subscribe
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!-- Recommended Writers -->
+                        <div class="p-6 rounded-2xl border border-stone-200/80 dark:border-stone-800">
+                            <h3 class="font-serif text-lg font-bold mb-5">Recommended Writers</h3>
+                            <div id="recommendedAuthors" class="space-y-4">
+                                <!-- Injected Writers -->
+                            </div>
+                        </div>
+
+                    </aside>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section id="aboutSection" class="border-t border-stone-200 dark:border-stone-800 py-16 bg-warm-50 dark:bg-stone-900/30">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center space-y-6">
+                <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-stone-900 text-white dark:bg-warm-100 dark:text-stone-900 mb-2">
+                    <i data-lucide="feather" class="w-6 h-6"></i>
+                </div>
+                <h2 class="font-serif text-3xl font-bold tracking-tight">About BIDYARTHI BROTHERS</h2>
+                <p class="text-stone-600 dark:text-stone-300 text-lg leading-relaxed font-serif max-w-2xl mx-auto">
+                    A minimalist digital publication space designed for quiet reflection, rich media essays, developer code snippets, and long-form articles.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-stone-200 dark:border-stone-800 bg-warm-100 dark:bg-stone-950 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-stone-500">
+            <p>© 2026 BIDYARTHI BROTHERS. Built for readers, writers, &amp; developers.</p>
+            <div class="flex items-center gap-6">
+                <a href="#" class="hover:underline">Privacy Policy</a>
+                <a href="#" class="hover:underline">Terms</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ARTICLE / PAGE READER MODAL -->
+    <div id="readerOverlay" class="fixed inset-0 bg-stone-950/70 backdrop-blur-md z-50 overflow-y-auto hidden opacity-0 transition-opacity duration-300">
+        <div class="min-h-screen px-4 py-8 sm:py-12 flex justify-center">
+            
+            <div class="bg-warm-50 dark:bg-stone-900 border border-stone-200 dark:border-stone-800 w-full max-w-3xl rounded-2xl shadow-2xl relative overflow-hidden self-start my-auto">
+                
+                <!-- Toolbar Header -->
+                <div class="sticky top-0 z-20 bg-warm-50/95 dark:bg-stone-900/95 backdrop-blur-md border-b border-stone-200/80 dark:border-stone-800 px-6 py-3.5 flex items-center justify-between">
+                    <button onclick="closeReaderModal()" class="flex items-center gap-2 text-stone-600 dark:text-stone-300 hover:text-stone-900 dark:hover:text-white text-sm font-medium transition-colors">
+                        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                        <span>Back</span>
+                    </button>
+
+                    <!-- Preferences -->
+                    <div class="flex items-center gap-3 text-stone-600 dark:text-stone-300">
+                        <button onclick="toggleReaderFont()" title="Switch Font" class="text-xs font-semibold px-2.5 py-1 rounded border border-stone-300 dark:border-stone-700 hover:bg-stone-200/50 dark:hover:bg-stone-800">
+                            <span id="fontLabel">Serif</span>
+                        </button>
+
+                        <div class="flex items-center border border-stone-300 dark:border-stone-700 rounded overflow-hidden">
+                            <button onclick="adjustReaderFontSize(-1)" class="px-2 py-1 text-xs hover:bg-stone-200/50 dark:hover:bg-stone-800">A-</button>
+                            <span class="px-1 text-xs text-stone-400">|</span>
+                            <button onclick="adjustReaderFontSize(1)" class="px-2 py-1 text-xs hover:bg-stone-200/50 dark:hover:bg-stone-800">A+</button>
+                        </div>
+
+                        <button onclick="toggleBookmarkCurrent()" id="readerBookmarkBtn" class="p-1.5 hover:text-terracotta transition-colors" title="Bookmark">
+                            <i data-lucide="bookmark" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Main Content Container -->
+                <div id="readerContentContainer" class="p-6 sm:p-12 font-serif text-stone-800 dark:text-stone-200 transition-all">
+                    <!-- Dynamic Reader Injected Content -->
+                </div>
+
+                <!-- Engagement Bar -->
+                <div class="border-t border-stone-200 dark:border-stone-800 bg-warm-100/50 dark:bg-stone-950/50 p-6 sm:p-10 space-y-8">
+                    
+                    <div class="flex items-center justify-between border-y border-stone-200 dark:border-stone-800 py-4">
+                        <div class="flex items-center gap-4">
+                            <button onclick="handleClap()" class="relative group flex items-center gap-2 bg-stone-900 text-white dark:bg-warm-100 dark:text-stone-900 px-5 py-2.5 rounded-full hover:bg-terracotta dark:hover:bg-terracotta dark:hover:text-white transition-all transform active:scale-95 shadow">
+                                <i data-lucide="sparkles" class="w-5 h-5"></i>
+                                <span class="font-sans text-sm font-semibold">Clap</span>
+                                <span id="clapCounter" class="bg-stone-700 dark:bg-stone-300 dark:text-stone-900 text-xs px-2 py-0.5 rounded-full ml-1">0</span>
+                                <div id="clapPop" class="absolute -top-8 left-1/2 -translate-x-1/2 text-terracotta font-bold text-sm pointer-events-none hidden">+1</div>
+                            </button>
+                        </div>
+                        <button onclick="shareArticle()" class="p-2 hover:bg-stone-200 dark:hover:bg-stone-800 rounded-full text-stone-600 dark:text-stone-300" title="Share link">
+                            <i data-lucide="share-2" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+
+                    <!-- Author Info -->
+                    <div id="readerAuthorBio" class="flex items-start gap-4 p-5 bg-warm-50 dark:bg-stone-900 rounded-xl border border-stone-200/80 dark:border-stone-800 font-sans">
+                        <!-- Dynamic Bio -->
+                    </div>
+
+                    <!-- Comments -->
+                    <div class="font-sans space-y-6">
+                        <h3 class="font-serif text-xl font-bold flex items-center gap-2">
+                            <span>Discussion</span>
+                            <span id="commentCountBadge" class="text-xs font-sans bg-stone-200 dark:bg-stone-800 px-2.5 py-0.5 rounded-full">0</span>
+                        </h3>
+
+                        <form onsubmit="handleAddComment(event)" class="space-y-3">
+                            <textarea id="commentInput" rows="3" required placeholder="Share your thoughts or code review..." class="w-full bg-white dark:bg-stone-950 border border-stone-200 dark:border-stone-800 rounded-xl p-3 text-sm focus:outline-none focus:border-terracotta resize-none"></textarea>
+                            <div class="flex justify-end">
+                                <button type="submit" class="bg-stone-900 text-white dark:bg-stone-100 dark:text-stone-900 hover:bg-terracotta text-sm px-5 py-2 rounded-lg font-medium transition-colors">
+                                    Post Comment
+                                </button>
+                            </div>
+                        </form>
+
+                        <div id="commentsList" class="space-y-4 pt-2">
+                            <!-- Dynamic Comments -->
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- SEARCH MODAL -->
+    <div id="searchModal" class="fixed inset-0 bg-stone-950/60 backdrop-blur-sm z-50 hidden opacity-0 transition-opacity duration-200 flex items-start justify-center pt-20 px-4">
+        <div class="bg-warm-50 dark:bg-stone-900 border border-stone-200 dark:border-stone-800 w-full max-w-xl rounded-2xl shadow-2xl overflow-hidden">
+            <div class="p-4 border-b border-stone-200 dark:border-stone-800 flex items-center gap-3">
+                <i data-lucide="search" class="w-5 h-5 text-stone-400"></i>
+                <input type="text" id="searchInput" oninput="handleSearch(this.value)" placeholder="Search articles, pages, tags..." class="w-full bg-transparent text-stone-900 dark:text-stone-100 placeholder-stone-400 text-base focus:outline-none">
+                <button onclick="toggleSearchModal(false)" class="p-1 hover:bg-stone-200 dark:hover:bg-stone-800 rounded">
+                    <i data-lucide="x" class="w-5 h-5 text-stone-400"></i>
+                </button>
+            </div>
+            <div id="searchResults" class="p-4 max-h-80 overflow-y-auto space-y-2">
+                <p class="text-xs text-stone-400 text-center py-6">Type to search...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ENHANCED CREATE ARTICLE / PAGE DRAWER -->
+    <div id="writeModal" class="fixed inset-0 bg-stone-950/60 backdrop-blur-sm z-50 hidden opacity-0 transition-opacity duration-200 flex items-center justify-center p-4">
+        <div class="bg-warm-50 dark:bg-stone-900 border border-stone-200 dark:border-stone-800 w-full max-w-3xl rounded-2xl shadow-2xl overflow-hidden max-h-[92vh] flex flex-col">
+            
+            <div class="p-5 border-b border-stone-200 dark:border-stone-800 flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <i data-lucide="pen-tool" class="w-5 h-5 text-terracotta"></i>
+                    <h3 class="font-serif text-lg font-bold">Write New Content</h3>
+                </div>
+                <button onclick="toggleWriteModal(false)" class="p-1 hover:bg-stone-200 dark:hover:bg-stone-800 rounded-lg">
+                    <i data-lucide="x" class="w-5 h-5 text-stone-400"></i>
+                </button>
+            </div>
+
+            <form onsubmit="handlePublishStory(event)" class="p-6 space-y-5 overflow-y-auto flex-1">
+                
+                <!-- Content Type (Article vs Page) -->
+                <div class="grid grid-cols-2 gap-4 bg-stone-200/50 dark:bg-stone-800/50 p-1.5 rounded-xl text-center">
+                    <label class="cursor-pointer">
+                        <input type="radio" name="contentType" value="post" checked onchange="toggleFormType('post')" class="peer sr-only">
+                        <div class="py-2 rounded-lg text-xs font-bold text-stone-600 dark:text-stone-400 peer-checked:bg-white dark:peer-checked:bg-stone-900 peer-checked:text-stone-900 dark:peer-checked:text-white peer-checked:shadow-sm transition-all">
+                            Post / Article
+                        </div>
+                    </label>
+                    <label class="cursor-pointer">
+                        <input type="radio" name="contentType" value="page" onchange="toggleFormType('page')" class="peer sr-only">
+                        <div class="py-2 rounded-lg text-xs font-bold text-stone-600 dark:text-stone-400 peer-checked:bg-white dark:peer-checked:bg-stone-900 peer-checked:text-stone-900 dark:peer-checked:text-white peer-checked:shadow-sm transition-all">
+                            Static Page (e.g. Portfolio/About)
+                        </div>
+                    </label>
+                </div>
+
+                <!-- Title -->
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-stone-500 mb-1">Title</label>
+                    <input type="text" id="newTitle" required placeholder="Enter a descriptive headline..." class="w-full bg-white dark:bg-stone-950 border border-stone-200 dark:border-stone-800 rounded-lg p-3 text-sm focus:outline-none focus:border-terracotta">
+                </div>
+
+                <!-- Meta Row -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div id="categoryField">
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-stone-500 mb-1">Category</label>
+                        <select id="newCategory" class="w-full bg-white dark:bg-stone-950 border border-stone-200 dark:border-stone-800 rounded-lg p-3 text-sm focus:outline-none focus:border-terracotta">
+                            <option value="Technology">Technology</option>
+                            <option value="Design">Design</option>
+                            <option value="Philosophy">Philosophy</option>
+                            <option value="Culture">Culture</option>
+                            <option value="Business">Business</option>
+                            <option value="Writing">Writing</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-stone-500 mb-1">Read Time (min)</label>
+                        <input type="number" id="newReadTime" value="5" min="1" max="60" class="w-full bg-white dark:bg-stone-950 border border-stone-200 dark:border-stone-800 rounded-lg p-3 text-sm focus:outline-none focus:border-terracotta">
+                    </div>
+                </div>
+
+                <!-- LOCAL COVER IMAGE UPLOAD -->
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-stone-500 mb-1">Cover Image (From Device)</label>
+                    <div class="flex items-center gap-3">
+                        <label class="flex-1 cursor-pointer flex items-center justify-center gap-2 border border-dashed border-stone-300 dark:border-stone-700 rounded-xl p-3 bg-white dark:bg-stone-950 hover:border-terracotta transition-colors">
+                            <i data-lucide="upload-cloud" class="w-5 h-5 text-stone-400"></i>
+                            <span id="coverFileName" class="text-xs text-stone-500">Choose image from local device...</span>
+                            <input type="file" id="localCoverInput" accept="image/*" onchange="handleCoverImageSelect(event)" class="hidden">
+                        </label>
+                        <div id="coverPreviewContainer" class="hidden w-12 h-12 rounded-lg overflow-hidden border border-stone-300">
+                            <img id="coverPreview" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Excerpt -->
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-stone-500 mb-1">Short Excerpt</label>
+                    <input type="text" id="newExcerpt" required placeholder="Summary of your article or page..." class="w-full bg-white dark:bg-stone-950 border border-stone-200 dark:border-stone-800 rounded-lg p-3 text-sm focus:outline-none focus:border-terracotta">
+                </div>
+
+                <!-- RICH BLOCK TOOLBAR &amp; CONTENT AREA -->
+                <div>
+                    <div class="flex items-center justify-between mb-1">
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-stone-500">Content &amp; Rich Media</label>
+                        
+                        <!-- Format Helper Buttons -->
+                        <div class="flex items-center gap-1.5 bg-stone-200/60 dark:bg-stone-800 p-1 rounded-lg">
+                            <button type="button" onclick="insertFormat('h2')" title="Add Heading" class="px-2 py-1 text-xs font-bold bg-white dark:bg-stone-900 rounded hover:text-terracotta">H2</button>
+                            <button type="button" onclick="insertFormat('h3')" title="Add Subheading" class="px-2 py-1 text-xs font-bold bg-white dark:bg-stone-900 rounded hover:text-terracotta">H3</button>
+                            <button type="button" onclick="insertFormat('quote')" title="Add Quote" class="px-2 py-1 text-xs font-bold bg-white dark:bg-stone-900 rounded hover:text-terracotta">”</button>
+                            <button type="button" onclick="insertFormat('code')" title="Add Code Snippet" class="px-2 py-1 text-xs font-bold bg-white dark:bg-stone-900 rounded hover:text-terracotta flex items-center gap-1">
+                                <i data-lucide="code" class="w-3 h-3"></i>
+                                <span>Code</span>
+                            </button>
+                            <!-- Inline Image File Button -->
+                            <label title="Insert Inline Image from Device" class="px-2 py-1 text-xs font-bold bg-white dark:bg-stone-900 rounded hover:text-terracotta cursor-pointer flex items-center gap-1">
+                                <i data-lucide="image" class="w-3 h-3"></i>
+                                <span>Image</span>
+                                <input type="file" accept="image/*" onchange="handleInlineImageUpload(event)" class="hidden">
+                            </label>
+                        </div>
+                    </div>
+
+                    <textarea id="newContent" rows="8" required placeholder="Write your full story here. You can click formatting tools above to insert headings, blockquotes, code blocks, or local images..." class="w-full bg-white dark:bg-stone-950 border border-stone-200 dark:border-stone-800 rounded-lg p-3 text-sm focus:outline-none focus:border-terracotta resize-none font-serif leading-relaxed"></textarea>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="pt-2 flex items-center justify-end gap-3">
+                    <button type="button" onclick="toggleWriteModal(false)" class="px-4 py-2 rounded-lg text-sm text-stone-600 dark:text-stone-400 hover:bg-stone-200 dark:hover:bg-stone-800">Cancel</button>
+                    <button type="submit" class="bg-terracotta hover:bg-terracotta-hover text-white px-6 py-2 rounded-lg text-sm font-medium transition-colors shadow">
+                        Publish Content
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION POPUP -->
+    <div id="toast" class="fixed bottom-6 right-6 bg-stone-900 text-white dark:bg-warm-100 dark:text-stone-900 px-5 py-3 rounded-xl shadow-xl flex items-center gap-3 transform translate-y-20 opacity-0 transition-all duration-300 z-50 pointer-events-none">
+        <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-400 dark:text-emerald-600"></i>
+        <span id="toastMessage" class="text-sm font-medium">Notification message</span>
+    </div>
+
+    <script>
+        /* -------------------------------------------------------------
+           1. INITIAL SAMPLE DATA
+        ------------------------------------------------------------- */
+        const categories = ["All", "Technology", "Design", "Philosophy", "Culture", "Business", "Writing"];
+
+        let articles = [
+            {
+                id: 1,
+                type: "post",
+                featured: true,
+                title: "Building Reactive Component Libraries with Clean Code",
+                excerpt: "A deep dive into modular frontend architecture, state management, and code block execution.",
+                content: `
+                    <p class="mb-5 text-lg leading-relaxed">When constructing web component frameworks, maintaining strict separation of concerns while offering intuitive state reactive hooks is paramount.</p>
+                    
+                    <h2>1. The State Machine Paradigm</h2>
+                    <p class="mb-5 leading-relaxed">Rather than permitting unconstrained state updates across components, explicit actions ensure debuggability.</p>
+                    
+                    <pre><code class="language-javascript">// Modern Clean Event State Dispatcher
+function createStore(initialState) {
+    let state = initialState;
+    const listeners = new Set();
+
+    return {
+        getState: () => state,
+        dispatch: (action) => {
+            state = reducer(state, action);
+            listeners.forEach(fn => fn(state));
+        },
+        subscribe: (fn) => listeners.add(fn)
+    };
+}</code><button onclick="copyCodeBlock(this)" class="absolute top-2 right-2 bg-stone-800 text-xs text-stone-300 px-2 py-1 rounded hover:bg-stone-700">Copy</button></pre>
+
+                    <blockquote>
+                        "Simplicity is prerequisite for reliability." — Edsger W. Dijkstra
+                    </blockquote>
+
+                    <p class="mb-5 leading-relaxed">By enforcing immutable updates, applications remain predictable and simple to test.</p>
+                `,
+                category: "Technology",
+                author: {
+                    name: "Bidyarthi Team",
+                    role: "Systems Architect",
+                    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200",
+                    bio: "Writing about UI systems, clean software architecture, and minimalist code for BIDYARTHI BROTHERS."
+                },
+                date: "Oct 22, 2026",
+                readTime: "6 min read",
+                image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&q=80&w=1200",
+                claps: 412,
+                bookmarked: false,
+                comments: []
+            },
+            {
+                id: 2,
+                type: "page",
+                featured: false,
+                title: "Engineering &amp; Design Portfolio Guidelines",
+                excerpt: "Standalone Page detailing editorial standards, design guidelines, and code snippet submission rules.",
+                content: `
+                    <h2>Platform Documentation &amp; Custom Page Guidelines</h2>
+                    <p class="mb-5 leading-relaxed">This is an example of a <strong>Static Page</strong> created within the BIDYARTHI BROTHERS publishing platform.</p>
+
+                    <h3>Code Formatting Rules</h3>
+                    <p class="mb-5 leading-relaxed">All submitted articles featuring code snippets should encapsulate code in code blocks:</p>
+
+                    <pre><code>// Example CSS styling token
+:root {
+    --accent-color: #c85a32;
+    --bg-warm: #faf9f5;
+}</code><button onclick="copyCodeBlock(this)" class="absolute top-2 right-2 bg-stone-800 text-xs text-stone-300 px-2 py-1 rounded hover:bg-stone-700">Copy</button></pre>
+
+                    <p class="mb-5 leading-relaxed">You can publish your own custom portfolio pages or documentation directly using the Write Drawer!</p>
+                `,
+                category: "Design",
+                author: {
+                    name: "BIDYARTHI Editors",
+                    role: "Core Platform",
+                    avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200",
+                    bio: "Official guidelines for contributors and authors at BIDYARTHI BROTHERS."
+                },
+                date: "Oct 20, 2026",
+                readTime: "3 min read",
+                image: "https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&q=80&w=800",
+                claps: 156,
+                bookmarked: false,
+                comments: []
+            },
+            {
+                id: 3,
+                type: "post",
+                featured: false,
+                title: "Why Paper Notebooks Persist in a High-Tech Era",
+                excerpt: "Despite hyper-connected note apps, physical tactile notebooks remain an unmatched medium for spatial thinking.",
+                content: `
+                    <p class="mb-5 text-lg leading-relaxed">There is no latency on a physical sheet of paper. There are no notification popups, no battery warnings, and no software updates interrupting the speed of thought.</p>
+                    <p class="mb-5 leading-relaxed">Paper allows non-linear layout: arrows drawn across margins, diagrams sprawling diagonally, and erased sketches that leave faint ghosts of previous iterations.</p>
+                `,
+                category: "Philosophy",
+                author: {
+                    name: "Julian Thorne",
+                    role: "Culture Critic",
+                    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=200",
+                    bio: "Julian writes about analog revivals and focus culture."
+                },
+                date: "Oct 18, 2026",
+                readTime: "5 min read",
+                image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&q=80&w=800",
+                claps: 289,
+                bookmarked: false,
+                comments: []
+            }
+        ];
+
+        const recommendedAuthorsList = [
+            { name: "Bidyarthi Team", handle: "@bidyarthi", avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=100" },
+            { name: "Julian Thorne", handle: "@jthorne", avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=100" }
+        ];
+
+        /* -------------------------------------------------------------
+           2. STATE MANAGEMENT
+        ------------------------------------------------------------- */
+        let currentTypeFilter = "post"; // 'post' or 'page'
+        let currentCategory = "All";
+        let currentViewMode = "grid"; 
+        let currentOpenArticleId = null;
+        let readerFontSerif = true;
+        let readerFontSizeClass = "text-base";
+        let readerFontSizeIndex = 1;
+
+        let tempUploadedCoverBase64 = null;
+
+        /* -------------------------------------------------------------
+           3. INITIALIZATION
+        ------------------------------------------------------------- */
+        document.addEventListener("DOMContentLoaded", () => {
+            renderHeroFeatured();
+            renderCategoryPills();
+            renderArticlesFeed();
+            renderTrendingList();
+            renderRecommendedAuthors();
+            updatePageBadge();
+            lucide.createIcons();
+
+            const modal = document.getElementById("readerOverlay");
+            modal.addEventListener('scroll', updateReadingProgress);
+        });
+
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            showToast("Theme switched");
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById("mobileMenu");
+            menu.classList.toggle("hidden");
+        }
+
+        function updatePageBadge() {
+            const count = articles.filter(a => a.type === 'page').length;
+            document.getElementById("pageBadgeCount").textContent = count;
+        }
+
+        /* -------------------------------------------------------------
+           4. RENDER HERO &amp; FEED
+        ------------------------------------------------------------- */
+        function renderHeroFeatured() {
+            const featured = articles.find(a => a.featured) || articles[0];
+            const heroEl = document.getElementById("heroContent");
+            if (!heroEl || !featured) return;
+
+            heroEl.innerHTML = `
+                <div class="lg:col-span-7 space-y-5">
+                    <div class="flex items-center gap-3 text-xs font-semibold uppercase tracking-wider text-stone-500">
+                        <span class="bg-terracotta/10 text-terracotta px-3 py-1 rounded-full font-medium">Featured ${featured.type.toUpperCase()}</span>
+                        <span>•</span>
+                        <span>${featured.category}</span>
+                        <span>•</span>
+                        <span>${featured.readTime}</span>
+                    </div>
+
+                    <h1 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-stone-900 dark:text-stone-100 leading-[1.15] hover:text-terracotta transition-colors cursor-pointer" onclick="openReaderModal(${featured.id})">
+                        ${featured.title}
+                    </h1>
+
+                    <p class="text-stone-600 dark:text-stone-300 text-base sm:text-lg leading-relaxed line-clamp-3 font-serif">
+                        ${featured.excerpt}
+                    </p>
+
+                    <div class="flex items-center justify-between pt-4">
+                        <div class="flex items-center gap-3">
+                            <img src="${featured.author.avatar}" class="w-11 h-11 rounded-full object-cover border border-stone-200 dark:border-stone-700">
+                            <div>
+                                <h4 class="text-sm font-semibold text-stone-900 dark:text-stone-100">${featured.author.name}</h4>
+                                <p class="text-xs text-stone-500">${featured.date}</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-3">
+                            <button onclick="toggleBookmark(${featured.id}, event)" class="p-2.5 rounded-full border border-stone-300 dark:border-stone-700 hover:bg-stone-200/60 dark:hover:bg-stone-800 transition-colors">
+                                <i data-lucide="bookmark" class="w-4 h-4 ${featured.bookmarked ? 'fill-terracotta text-terracotta' : ''}"></i>
+                            </button>
+                            <button onclick="openReaderModal(${featured.id})" class="bg-stone-900 text-white dark:bg-warm-100 dark:text-stone-900 hover:bg-terracotta text-sm font-medium px-5 py-2.5 rounded-full transition-all flex items-center gap-2">
+                                <span>Read Story</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5">
+                    <div class="relative group cursor-pointer overflow-hidden rounded-2xl shadow-lg border border-stone-200/80 dark:border-stone-800" onclick="openReaderModal(${featured.id})">
+                        <img src="${featured.image}" alt="${featured.title}" class="w-full h-72 sm:h-96 object-cover transform group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                </div>
+            `;
+            lucide.createIcons();
+        }
+
+        function filterType(type) {
+            currentTypeFilter = type;
+            document.getElementById("btnTypePost").className = `px-3 py-1.5 rounded-full transition-all ${type === 'post' ? 'bg-stone-900 text-white dark:bg-stone-100 dark:text-stone-900 shadow-sm' : 'text-stone-600 dark:text-stone-400'}`;
+            document.getElementById("btnTypePage").className = `px-3 py-1.5 rounded-full transition-all ${type === 'page' ? 'bg-stone-900 text-white dark:bg-stone-100 dark:text-stone-900 shadow-sm' : 'text-stone-600 dark:text-stone-400'}`;
+            
+            document.getElementById("feedTitle").textContent = type === 'post' ? 'Latest Articles' : 'Static Pages';
+            renderArticlesFeed();
+        }
+
+        function renderCategoryPills() {
+            const container = document.getElementById("categoryPills");
+            if (!container) return;
+
+            container.innerHTML = categories.map(cat => `
+                <button onclick="filterCategory('${cat}')" class="px-3.5 py-1.5 rounded-full text-xs font-medium transition-all whitespace-nowrap ${
+                    cat === currentCategory 
+                    ? 'bg-stone-900 text-white dark:bg-stone-100 dark:text-stone-900 shadow-sm' 
+                    : 'bg-warm-50 dark:bg-stone-900 text-stone-600 dark:text-stone-400 hover:bg-stone-200/70 dark:hover:bg-stone-800'
+                }">
+                    ${cat}
+                </button>
+            `).join('');
+        }
+
+        function filterCategory(cat) {
+            currentCategory = cat;
+            renderCategoryPills();
+            renderArticlesFeed();
+        }
+
+        function setViewMode(mode) {
+            currentViewMode = mode;
+            document.getElementById("btnGridView").className = `p-1.5 rounded-md transition-colors ${mode === 'grid' ? 'bg-white dark:bg-stone-900 text-stone-900 dark:text-white shadow-sm' : 'text-stone-500'}`;
+            document.getElementById("btnListView").className = `p-1.5 rounded-md transition-colors ${mode === 'list' ? 'bg-white dark:bg-stone-900 text-stone-900 dark:text-white shadow-sm' : 'text-stone-500'}`;
+            renderArticlesFeed();
+        }
+
+        function renderArticlesFeed() {
+            const feedContainer = document.getElementById("articlesFeed");
+            if (!feedContainer) return;
+
+            let filtered = articles.filter(a => a.type === currentTypeFilter);
+            if (currentCategory !== "All") {
+                filtered = filtered.filter(a => a.category.toLowerCase() === currentCategory.toLowerCase());
+            }
+
+            document.getElementById("articleCount").textContent = `Showing ${filtered.length}`;
+
+            if (filtered.length === 0) {
+                feedContainer.innerHTML = `
+                    <div class="text-center py-12 border border-dashed border-stone-300 dark:border-stone-800 rounded-2xl">
+                        <i data-lucide="file-x" class="w-10 h-10 text-stone-400 mx-auto mb-3"></i>
+                        <p class="text-stone-500 text-sm">No ${currentTypeFilter}s found matching this filter.</p>
+                        <button onclick="filterCategory('All')" class="mt-3 text-terracotta font-medium text-sm hover:underline">Reset Filter</button>
+                    </div>
+                `;
+                lucide.createIcons();
+                return;
+            }
+
+            if (currentViewMode === 'grid') {
+                feedContainer.className = "grid sm:grid-cols-2 gap-8";
+                feedContainer.innerHTML = filtered.map(art => `
+                    <article class="bg-warm-50 dark:bg-stone-900/50 rounded-2xl border border-stone-200/80 dark:border-stone-800/80 overflow-hidden flex flex-col group hover:border-stone-300 dark:hover:border-stone-700 transition-all duration-300">
+                        <div class="relative h-48 overflow-hidden cursor-pointer" onclick="openReaderModal(${art.id})">
+                            <img src="${art.image}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-3 left-3 bg-warm-50/90 dark:bg-stone-900/90 backdrop-blur-md text-stone-800 dark:text-stone-200 text-xs font-semibold px-2.5 py-1 rounded-md">
+                                ${art.category}
+                            </span>
+                        </div>
+                        <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                            <div class="space-y-2">
+                                <div class="flex items-center gap-2 text-xs text-stone-500">
+                                    <span>${art.date}</span>
+                                    <span>•</span>
+                                    <span>${art.readTime}</span>
+                                </div>
+                                <h3 onclick="openReaderModal(${art.id})" class="font-serif text-xl font-bold group-hover:text-terracotta transition-colors cursor-pointer line-clamp-2">
+                                    ${art.title}
+                                </h3>
+                                <p class="text-stone-600 dark:text-stone-400 text-sm leading-relaxed line-clamp-2">
+                                    ${art.excerpt}
+                                </p>
+                            </div>
+
+                            <div class="flex items-center justify-between pt-4 border-t border-stone-200/60 dark:border-stone-800/60">
+                                <div class="flex items-center gap-2.5">
+                                    <img src="${art.author.avatar}" class="w-7 h-7 rounded-full object-cover">
+                                    <span class="text-xs font-medium text-stone-700 dark:text-stone-300">${art.author.name}</span>
+                                </div>
+                                <button onclick="toggleBookmark(${art.id}, event)" class="text-stone-400 hover:text-terracotta transition-colors">
+                                    <i data-lucide="bookmark" class="w-4 h-4 ${art.bookmarked ? 'fill-terracotta text-terracotta' : ''}"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+                `).join('');
+            } else {
+                feedContainer.className = "space-y-6";
+                feedContainer.innerHTML = filtered.map(art => `
+                    <article class="bg-warm-50 dark:bg-stone-900/50 p-6 rounded-2xl border border-stone-200/80 dark:border-stone-800/80 flex flex-col sm:flex-row gap-6 items-start group hover:border-stone-300 dark:hover:border-stone-700 transition-all">
+                        <div class="flex-1 space-y-3">
+                            <div class="flex items-center gap-2 text-xs text-stone-500">
+                                <span class="font-medium text-stone-700 dark:text-stone-300">${art.author.name}</span>
+                                <span>•</span>
+                                <span>${art.date}</span>
+                            </div>
+                            <h3 onclick="openReaderModal(${art.id})" class="font-serif text-xl font-bold group-hover:text-terracotta transition-colors cursor-pointer leading-snug">
+                                ${art.title}
+                            </h3>
+                            <p class="text-stone-600 dark:text-stone-400 text-sm leading-relaxed line-clamp-2">
+                                ${art.excerpt}
+                            </p>
+                        </div>
+                        <div class="w-full sm:w-32 h-32 shrink-0 rounded-xl overflow-hidden cursor-pointer" onclick="openReaderModal(${art.id})">
+                            <img src="${art.image}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                    </article>
+                `).join('');
+            }
+            lucide.createIcons();
+        }
+
+        function renderTrendingList() {
+            const container = document.getElementById("trendingList");
+            if (!container) return;
+
+            const sorted = [...articles].sort((a, b) => b.claps - a.claps).slice(0, 3);
+            container.innerHTML = sorted.map((art, idx) => `
+                <div onclick="openReaderModal(${art.id})" class="flex items-start gap-4 group cursor-pointer">
+                    <span class="font-serif text-2xl font-bold text-stone-300 dark:text-stone-700 group-hover:text-terracotta">0${idx + 1}</span>
+                    <div class="space-y-1">
+                        <h4 class="font-serif text-sm font-bold text-stone-800 dark:text-stone-200 group-hover:text-terracotta line-clamp-2">
+                            ${art.title}
+                        </h4>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderRecommendedAuthors() {
+            const container = document.getElementById("recommendedAuthors");
+            if (!container) return;
+
+            container.innerHTML = recommendedAuthorsList.map(auth => `
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <img src="${auth.avatar}" class="w-8 h-8 rounded-full object-cover">
+                        <div>
+                            <h4 class="text-xs font-semibold text-stone-900 dark:text-stone-100">${auth.name}</h4>
+                            <p class="text-[10px] text-stone-500">${auth.handle}</p>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        /* -------------------------------------------------------------
+           5. LOCAL FILE UPLOADER &amp; FORMATTING TOOLS
+        ------------------------------------------------------------- */
+        function handleCoverImageSelect(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                tempUploadedCoverBase64 = e.target.result;
+                document.getElementById("coverPreview").src = tempUploadedCoverBase64;
+                document.getElementById("coverPreviewContainer").classList.remove("hidden");
+                document.getElementById("coverFileName").textContent = file.name;
+                showToast("Local cover photo loaded!");
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function handleInlineImageUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const imgTag = `<img src="${e.target.result}" alt="${file.name}">\n`;
+                const textarea = document.getElementById("newContent");
+                textarea.value += "\n" + imgTag;
+                showToast("Inline local image inserted!");
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function insertFormat(type) {
+            const textarea = document.getElementById("newContent");
+            let snippet = "";
+
+            if (type === 'h2') snippet = "\n<h2>Heading Level 2</h2>\n";
+            if (type === 'h3') snippet = "\n<h3>Heading Level 3</h3>\n";
+            if (type === 'quote') snippet = "\n<blockquote>\"Insert thoughtful quote here...\"</blockquote>\n";
+            if (type === 'code') snippet = `\n<pre><code>// Insert your code here\nfunction example() {\n    return true;\n}</code><button onclick="copyCodeBlock(this)" class="absolute top-2 right-2 bg-stone-800 text-xs text-stone-300 px-2 py-1 rounded hover:bg-stone-700">Copy</button></pre>\n`;
+
+            textarea.value += snippet;
+            textarea.focus();
+        }
+
+        function toggleFormType(type) {
+            const catField = document.getElementById("categoryField");
+            if (type === 'page') {
+                catField.classList.add("opacity-40", "pointer-events-none");
+            } else {
+                catField.classList.remove("opacity-40", "pointer-events-none");
+            }
+        }
+
+        /* -------------------------------------------------------------
+           6. READER MODAL &amp; CODE COPYING
+        ------------------------------------------------------------- */
+        function openReaderModal(articleId) {
+            const art = articles.find(a => a.id === articleId);
+            if (!art) return;
+
+            currentOpenArticleId = articleId;
+            document.getElementById("readingProgressContainer").classList.remove("opacity-0");
+
+            const container = document.getElementById("readerContentContainer");
+            container.className = `p-6 sm:p-12 text-stone-800 dark:text-stone-200 transition-all max-w-[680px] mx-auto ${readerFontSerif ? 'font-serif' : 'font-sans'} ${readerFontSizeClass}`;
+
+            container.innerHTML = `
+                <div class="flex items-center gap-3 text-xs font-sans font-semibold uppercase tracking-wider text-terracotta mb-4">
+                    <span>${art.type.toUpperCase()}</span>
+                    <span class="text-stone-400">•</span>
+                    <span>${art.category}</span>
+                    <span class="text-stone-400">•</span>
+                    <span class="text-stone-500">${art.readTime}</span>
+                </div>
+
+                <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-stone-900 dark:text-stone-100 leading-tight mb-6">
+                    ${art.title}
+                </h1>
+
+                <div class="flex items-center gap-4 py-4 mb-8 border-y border-stone-200/80 dark:border-stone-800/80 font-sans">
+                    <img src="${art.author.avatar}" class="w-12 h-12 rounded-full object-cover">
+                    <div>
+                        <h4 class="text-sm font-bold text-stone-900 dark:text-stone-100">${art.author.name}</h4>
+                        <p class="text-xs text-stone-500">${art.author.role} • ${art.date}</p>
+                    </div>
+                </div>
+
+                <div class="mb-10 rounded-2xl overflow-hidden shadow-md">
+                    <img src="${art.image}" class="w-full max-h-[420px] object-cover">
+                </div>
+
+                <div class="article-body leading-relaxed">
+                    ${art.content}
+                </div>
+            `;
+
+            document.getElementById("clapCounter").textContent = art.claps;
+            updateReaderBookmarkBtn(art.bookmarked);
+            renderComments();
+
+            const modal = document.getElementById("readerOverlay");
+            modal.classList.remove("hidden");
+            setTimeout(() => modal.classList.remove("opacity-0"), 10);
+            document.body.style.overflow = "hidden";
+
+            lucide.createIcons();
+        }
+
+        function closeReaderModal() {
+            const modal = document.getElementById("readerOverlay");
+            modal.classList.add("opacity-0");
+            setTimeout(() => {
+                modal.classList.add("hidden");
+                document.body.style.overflow = "auto";
+                document.getElementById("readingProgressContainer").classList.add("opacity-0");
+            }, 200);
+        }
+
+        function copyCodeBlock(btn) {
+            const codeEl = btn.parentElement.querySelector("code");
+            if (codeEl) {
+                navigator.clipboard.writeText(codeEl.innerText);
+                btn.textContent = "Copied!";
+                setTimeout(() => btn.textContent = "Copy", 2000);
+            }
+        }
+
+        function updateReadingProgress() {
+            const modal = document.getElementById("readerOverlay");
+            if (modal.classList.contains("hidden")) return;
+
+            const scrollTop = modal.scrollTop;
+            const scrollHeight = modal.scrollHeight - modal.clientHeight;
+            if (scrollHeight <= 0) return;
+
+            const percent = (scrollTop / scrollHeight) * 100;
+            document.getElementById("readingProgressBar").style.width = `${percent}%`;
+        }
+
+        function toggleReaderFont() {
+            readerFontSerif = !readerFontSerif;
+            document.getElementById("fontLabel").textContent = readerFontSerif ? "Serif" : "Sans";
+            const container = document.getElementById("readerContentContainer");
+            if (readerFontSerif) {
+                container.classList.remove("font-sans");
+                container.classList.add("font-serif");
+            } else {
+                container.classList.remove("font-serif");
+                container.classList.add("font-sans");
+            }
+        }
+
+        function adjustReaderFontSize(delta) {
+            const sizes = ["text-sm", "text-base", "text-lg", "text-xl"];
+            readerFontSizeIndex = Math.max(0, Math.min(sizes.length - 1, readerFontSizeIndex + delta));
+            readerFontSizeClass = sizes[readerFontSizeIndex];
+
+            const container = document.getElementById("readerContentContainer");
+            sizes.forEach(s => container.classList.remove(s));
+            container.classList.add(readerFontSizeClass);
+        }
+
+        function handleClap() {
+            if (!currentOpenArticleId) return;
+            const art = articles.find(a => a.id === currentOpenArticleId);
+            if (!art) return;
+
+            art.claps += 1;
+            document.getElementById("clapCounter").textContent = art.claps;
+
+            const pop = document.getElementById("clapPop");
+            pop.classList.remove("hidden");
+            pop.classList.add("animate-float");
+            setTimeout(() => {
+                pop.classList.add("hidden");
+                pop.classList.remove("animate-float");
+            }, 800);
+        }
+
+        function toggleBookmark(artId, event) {
+            if (event) event.stopPropagation();
+            const art = articles.find(a => a.id === artId);
+            if (!art) return;
+
+            art.bookmarked = !art.bookmarked;
+            showToast(art.bookmarked ? "Saved to bookmarks" : "Removed bookmark");
+            renderArticlesFeed();
+        }
+
+        function toggleBookmarkCurrent() {
+            if (currentOpenArticleId) toggleBookmark(currentOpenArticleId, null);
+        }
+
+        function updateReaderBookmarkBtn(isBookmarked) {
+            const btn = document.getElementById("readerBookmarkBtn");
+            if (!btn) return;
+            btn.innerHTML = `<i data-lucide="bookmark" class="w-5 h-5 ${isBookmarked ? 'fill-terracotta text-terracotta' : ''}"></i>`;
+            lucide.createIcons();
+        }
+
+        function shareArticle() {
+            navigator.clipboard.writeText(window.location.href);
+            showToast("Link copied to clipboard!");
+        }
+
+        /* -------------------------------------------------------------
+           7. PUBLISH CONTENT
+        ------------------------------------------------------------- */
+        function toggleWriteModal(show) {
+            const modal = document.getElementById("writeModal");
+            if (show) {
+                modal.classList.remove("hidden");
+                setTimeout(() => modal.classList.remove("opacity-0"), 10);
+            } else {
+                modal.classList.add("opacity-0");
+                setTimeout(() => modal.classList.add("hidden"), 200);
+            }
+        }
+
+        function handlePublishStory(e) {
+            e.preventDefault();
+
+            const contentType = document.querySelector('input[name="contentType"]:checked').value;
+            const title = document.getElementById("newTitle").value.trim();
+            const category = document.getElementById("newCategory").value;
+            const readTime = document.getElementById("newReadTime").value + " min read";
+            const excerpt = document.getElementById("newExcerpt").value.trim();
+            const contentRaw = document.getElementById("newContent").value.trim();
+
+            const defaultFallbackImg = "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&q=80&w=800";
+            const finalImage = tempUploadedCoverBase64 || defaultFallbackImg;
+
+            const newArticle = {
+                id: Date.now(),
+                type: contentType,
+                featured: false,
+                title: title,
+                excerpt: excerpt,
+                content: contentRaw,
+                category: contentType === 'page' ? 'Static Page' : category,
+                author: {
+                    name: "Bidyarthi Author",
+                    role: "Writer",
+                    avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=200",
+                    bio: "Contributor to BIDYARTHI BROTHERS."
+                },
+                date: "Just now",
+                readTime: readTime,
+                image: finalImage,
+                claps: 0,
+                bookmarked: false,
+                comments: []
+            };
+
+            articles.unshift(newArticle);
+            toggleWriteModal(false);
+
+            // Reset image state
+            tempUploadedCoverBase64 = null;
+            document.getElementById("coverPreviewContainer").classList.add("hidden");
+            document.getElementById("coverFileName").textContent = "Choose image from local device...";
+
+            // Switch view filter to match created item
+            filterType(contentType);
+            updatePageBadge();
+            showToast(`New ${contentType} successfully published!`);
+
+            e.target.reset();
+        }
+
+        /* -------------------------------------------------------------
+           8. COMMENTS &amp; SEARCH
+        ------------------------------------------------------------- */
+        function renderComments() {
+            const art = articles.find(a => a.id === currentOpenArticleId);
+            if (!art) return;
+
+            const container = document.getElementById("commentsList");
+            document.getElementById("commentCountBadge").textContent = art.comments.length;
+
+            if (art.comments.length === 0) {
+                container.innerHTML = `<p class="text-xs text-stone-400 py-2">No discussion yet.</p>`;
+                return;
+            }
+
+            container.innerHTML = art.comments.map(c => `
+                <div class="bg-warm-50 dark:bg-stone-900/60 p-4 rounded-xl border border-stone-200/60 dark:border-stone-800/60 space-y-2">
+                    <div class="flex items-center justify-between text-xs">
+                        <div class="flex items-center gap-2">
+                            <img src="${c.avatar}" class="w-5 h-5 rounded-full object-cover">
+                            <span class="font-bold text-stone-800 dark:text-stone-200">${c.author}</span>
+                        </div>
+                        <span class="text-stone-400">${c.date}</span>
+                    </div>
+                    <p class="text-sm text-stone-600 dark:text-stone-300 leading-relaxed">${c.text}</p>
+                </div>
+            `).join('');
+        }
+
+        function handleAddComment(e) {
+            e.preventDefault();
+            const input = document.getElementById("commentInput");
+            const text = input.value.trim();
+            if (!text || !currentOpenArticleId) return;
+
+            const art = articles.find(a => a.id === currentOpenArticleId);
+            if (!art) return;
+
+            art.comments.unshift({
+                id: Date.now(),
+                author: "You",
+                avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=100",
+                text: text,
+                date: "Just now"
+            });
+
+            input.value = "";
+            renderComments();
+            showToast("Comment posted!");
+        }
+
+        function toggleSearchModal(show) {
+            const modal = document.getElementById("searchModal");
+            if (show) {
+                modal.classList.remove("hidden");
+                setTimeout(() => {
+                    modal.classList.remove("opacity-0");
+                    document.getElementById("searchInput").focus();
+                }, 10);
+            } else {
+                modal.classList.add("opacity-0");
+                setTimeout(() => modal.classList.add("hidden"), 200);
+            }
+        }
+
+        function handleSearch(query) {
+            const resultsContainer = document.getElementById("searchResults");
+            const q = query.toLowerCase().trim();
+
+            if (!q) {
+                resultsContainer.innerHTML = `<p class="text-xs text-stone-400 text-center py-6">Type to search...</p>`;
+                return;
+            }
+
+            const matches = articles.filter(a => 
+                a.title.toLowerCase().includes(q) || 
+                a.excerpt.toLowerCase().includes(q) || 
+                a.category.toLowerCase().includes(q)
+            );
+
+            if (matches.length === 0) {
+                resultsContainer.innerHTML = `<p class="text-xs text-stone-400 text-center py-6">No results for "${query}"</p>`;
+                return;
+            }
+
+            resultsContainer.innerHTML = matches.map(a => `
+                <div onclick="openReaderModal(${a.id}); toggleSearchModal(false)" class="p-3 hover:bg-stone-200/50 dark:hover:bg-stone-800 rounded-xl cursor-pointer transition-colors space-y-1">
+                    <div class="flex items-center gap-2 text-xs text-terracotta">
+                        <span>${a.type.toUpperCase()}</span>
+                        <span>•</span>
+                        <span>${a.category}</span>
+                    </div>
+                    <h4 class="font-serif font-bold text-stone-900 dark:text-stone-100 text-sm">${a.title}</h4>
+                </div>
+            `).join('');
+        }
+
+        window.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+                e.preventDefault();
+                toggleSearchModal(true);
+            }
+            if (e.key === 'Escape') {
+                toggleSearchModal(false);
+                closeReaderModal();
+                toggleWriteModal(false);
+            }
+        });
+
+        function handleNewsletter(e) {
+            e.preventDefault();
+            showToast("Subscribed to BIDYARTHI BROTHERS updates!");
+            e.target.reset();
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById("toast");
+            document.getElementById("toastMessage").textContent = msg;
+
+            toast.classList.remove("translate-y-20", "opacity-0");
+            toast.classList.add("translate-y-0", "opacity-100");
+
+            setTimeout(() => {
+                toast.classList.remove("translate-y-0", "opacity-100");
+                toast.classList.add("translate-y-20", "opacity-0");
+            }, 3000);
+        }
+
+        function showSection(sectionId) {
+            if (sectionId === 'home') {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+    </script>
+</body>
+</html>
+```
